@@ -3,23 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Acceso a la Cámara</title>
+    <title>Acceder a la Cámara</title>
 </head>
 <body>
-    <h2>Accediendo a la cámara...</h2>
-    <video id="video" autoplay></video>
-    
+    <h2>Vista de tu Cámara</h2>
+    <video id="video" autoplay playsinline></video>
+
     <script>
-        navigator.mediaDevices.getUserMedia({ video: true })
-            .then(function(stream) {
-                document.getElementById("video").srcObject = stream;
-            })
-            .catch(function(error) {
-                console.error("No se pudo acceder a la cámara:", error);
-            });
+        // Verifica si el navegador soporta la API
+        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then(function(stream) {
+                    document.getElementById("video").srcObject = stream;
+                })
+                .catch(function(error) {
+                    console.error("Error al acceder a la cámara:", error);
+                });
+        } else {
+            alert("Tu navegador no soporta acceso a la cámara.");
+        }
     </script>
 </body>
 </html>
-
 
 
