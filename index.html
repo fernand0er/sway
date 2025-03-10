@@ -3,40 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tienda Online</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Acceso a la Cámara</title>
 </head>
 <body>
-    <header>
-        <img id="logo" src="logo.png" alt="Logo de la Empresa">
-        <nav>
-            <a href="index.html">Inicio</a>
-            <a href="blog.html">Blog</a>
-            <a href="#">Redes</a>
-        </nav>
-    </header>
+    <h2>Accediendo a la cámara...</h2>
+    <video id="video" autoplay></video>
     
-    <main>
-        <div class="product" data-name="Producto 1" data-price="10">
-            <h2>Producto 1</h2>
-            <p>Precio: $10</p>
-            <button class="view-product">Ver Producto</button>
-        </div>
-        <div class="product" data-name="Producto 2" data-price="15">
-            <h2>Producto 2</h2>
-            <p>Precio: $15</p>
-            <button class="view-product">Ver Producto</button>
-        </div>
-        <div class="product" data-name="Producto 3" data-price="20">
-            <h2>Producto 3</h2>
-            <p>Precio: $20</p>
-            <button class="view-product">Ver Producto</button>
-        </div>
-        <!-- Agrega más productos aquí -->
-    </main>
-
-    <script src="script.js"></script>
+    <script>
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(function(stream) {
+                document.getElementById("video").srcObject = stream;
+            })
+            .catch(function(error) {
+                console.error("No se pudo acceder a la cámara:", error);
+            });
+    </script>
 </body>
 </html>
+
 
 
